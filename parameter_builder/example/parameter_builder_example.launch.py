@@ -13,11 +13,13 @@ def generate_launch_description():
                 parameters=[
                     ParameterBuilder("parameter_builder")
                     .parameter("my_parameter", 20.0)
-                    .file_parameter("parameter_file", "config/parameter_file")
-                    .yaml("config/parameters.yaml")
+                    .file_parameter(
+                        "parameter_file", "config/parameter_file"
+                    )  # Or /absolute/path/to/file
+                    .yaml("config/parameters.yaml")  # Or /absolute/path/to/file
                     .xacro_parameter(
                         parameter_name="my_robot",
-                        file_path="config/parameter.xacro",
+                        file_path="config/parameter.xacro",  # Or /absolute/path/to/file
                         mappings={"prefix": "robot"},
                     )
                     .to_dict()
