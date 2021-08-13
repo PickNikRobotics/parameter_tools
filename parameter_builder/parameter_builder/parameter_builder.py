@@ -12,8 +12,14 @@ class ParameterBuilder(object):
     def __init__(self, package_name: str):
         self._package_path = Path(get_package_share_directory(package_name))
 
-    def yaml(self, file_path: str):
-        self._parameters.update(load_yaml(self._package_path / file_path))
+    def yaml(self, file_path: str, parameter_namespace: str = None):
+        if parameter_namespace:
+            if parameter_namespace in self._parameters:
+                self._parameters[parameter_namespace].update(load_yaml(self._package_path / file_path))
+            else:
+                self._parameters[parameter_namespace] = load_yaml(self._package_path / file_path)
+        else:
+            self._parameters.update(load_yaml(self._package_path / file_path))
         return self
 
     def file_parameter(self, parameter_name: str, file_path: str):
