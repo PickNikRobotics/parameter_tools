@@ -53,7 +53,7 @@ ParameterValueType = Union[
 
 def raise_if_file_not_found(file_path: Path):
     if not file_path.exists():
-        raise ParameterBuilderFileNotFoundError(f"File {file_path} doesn't exists")
+        raise ParameterBuilderFileNotFoundError(f"File {file_path} doesn't exist")
 
 
 def load_file(file_path: Path):
